@@ -53,7 +53,7 @@ class Fars2::ObjectSerializer
   end
 
 private
-  attr_reader :object, :params, :scope
+  attr_reader :object, :params
 
   def initialize(object, opts = {})
     @object = object
@@ -62,6 +62,14 @@ private
     @add_metadata = opts.fetch(:add_metadata, self.respond_to?(:meta))
     @root = opts.fetch(:root, self.class.root)
     @params = opts[:params]
+  end
+
+  def scope
+    if @scope.is_a? Proc
+      @scope = @scope.call
+    else
+      @scope
+    end
   end
 
   def requested_object_methods
