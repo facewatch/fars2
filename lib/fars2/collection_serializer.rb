@@ -22,6 +22,7 @@ private
 
   def initialize(objects, opts = {}, &block)
     @objects = objects
+    opts[:root] = opts[:root_key] if !opts.has_key?(:root) && opts.has_key?(:root_key)
     if !opts.has_key?(:root) && !opts[:class_name] && empty_array?
       raise ArgumentError, 'Specify :root or object :class_name for empty array.'
     end

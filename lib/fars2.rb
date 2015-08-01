@@ -56,6 +56,7 @@ begin
   module Sinatra
     module SerializersHelper
       def serialize(object, options = {})
+        options[:add_metadata] = false if params[:metadata] == 'false'
         object.serialize({ fields: params[:fields], scope: lambda { current_ability } }.merge(options))
       end
     end

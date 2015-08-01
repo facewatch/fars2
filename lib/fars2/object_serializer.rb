@@ -53,7 +53,7 @@ class Fars2::ObjectSerializer
   end
 
 private
-  attr_reader :object, :params
+  attr_reader :object, :params, :fields
 
   def initialize(object, opts = {})
     @object = object
